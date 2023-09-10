@@ -27,7 +27,7 @@ const Login = () => {
 
       if (isAuthenticated) {
         // console.log(isAuthenticated)
-        // alert.success("Loggedin Successfully!!")
+        alert.success("Loggedin Successfully!!")
 
           navigate(redirect);
       }
