@@ -40,10 +40,10 @@ useEffect(() => {
     navigate("/");
   }
 
-  if (error) {
+  if (error && !error.includes("jwt must be provided")) {
     alert.error(error);
     dispatch(clearErrors());
-  }
+}
 }, [dispatch, alert,  isAuthenticated, error, navigate]);
 
 const submitHandler = (e) => {

@@ -2,14 +2,15 @@ import React, { useEffect, useRef, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import { useSelector, useDispatch } from "react-redux";
-import Dropdown from "./layouts/Dropdown";
 import { logout } from "../actions/userActions";
+import { useAlert } from "react-alert"
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const alert = useAlert();
 
   const logoutHandler = () => {
-    
+    alert.success("Logged out successfully!!")
     dispatch(logout());
   };
 
