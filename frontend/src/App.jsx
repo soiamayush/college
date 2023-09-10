@@ -38,12 +38,10 @@ function App() {
 
   
   const [stripeApiKey, setStripeApiKey] = useState("")
-  const {user , loading, isAuthenticated } = useSelector(state => state.auth)
+  const {user ,  loading, isAuthenticated } = useSelector(state => state.auth)
 
   useEffect(() => {
-    
-   
-    store.dispatch(loadUser());
+      store.dispatch(loadUser());
   }, [])
 
   return (

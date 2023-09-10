@@ -5,11 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import MetaData from "../layouts/MetaData";
 import React, { Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAlert } from "react-alert";
 
 const Cartpage = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const alert = useAlert();
+
 
   const { cartItems } = useSelector((state) => state.cart);
   
@@ -37,7 +40,7 @@ const Cartpage = () => {
 
   const removeCartItemHandler = (id) => {
     dispatch(removeItemFromCart(id));
-    alert("Item Removed")
+    alert.success("Item Removed")
   };
 
   const checkoutHandler = () => {

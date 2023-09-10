@@ -6,12 +6,15 @@ import MetaData from "../layouts/MetaData";
 import { Link } from 'react-router-dom';
 import { login, clearErrors}  from "../../actions/userActions"
 import { useNavigate, useLocation } from "react-router-dom"
+import {useAlert} from "react-alert"
 
 
 const Login = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
+  const alert = useAlert();
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,12 +32,12 @@ const Login = () => {
           navigate(redirect);
       }
 
-      if (error) {
-          alert(error);
+      if (error && !error.includes("jwt must be provided")) {
+          alert.error(error);
           dispatch(clearErrors());
       }
 
-  }, [dispatch,  isAuthenticated, error, alert,  navigate, redirect]);
+  }, [dispatch,  isAuthenticated, error, alert,   redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();

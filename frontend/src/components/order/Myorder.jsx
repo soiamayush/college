@@ -6,9 +6,12 @@ import { MDBDataTable } from "mdbreact";
 import Loader from "../layouts/Loader";
 import MetaData from "../layouts/MetaData";
 import { myOrders, clearErrors } from "../../actions/orderActions";
+import { useAlert } from "react-alert";
 
 const Myorder = () => {
     const dispatch = useDispatch();
+    const alert = useAlert();
+
     const { loading, error, orders } = useSelector((state) => state.myOrders);
   
     const setOrders = () => {
@@ -71,7 +74,7 @@ const Myorder = () => {
       dispatch(myOrders());
   
       if (error) {
-        alert(error)
+        alert.error(error)
         dispatch(clearErrors());
       }
     }, [dispatch, error, alert]);

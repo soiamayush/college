@@ -4,6 +4,7 @@ import MetaData from "../layouts/MetaData";
 import React, { Fragment, useState, useEffect } from "react";
 import {  useNavigate, useParams } from "react-router-dom";
 import Loader from "../layouts/Loader";
+import { useAlert } from "react-alert";
 
 
 const Newpassword = () => {
@@ -11,6 +12,8 @@ const Newpassword = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const params = useParams();
+    const alert = useAlert();
+
   
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -21,11 +24,11 @@ const Newpassword = () => {
   
     useEffect(() => {
       if (error) {
-        alert(error);
+        alert.error(error);
         dispatch(clearErrors());
       }
       if (success) {
-        alert("Password updated successfully");
+        alert.success("Password updated successfully");
         navigate("/login")
       }
     }, [dispatch, alert, error, success, navigate]);

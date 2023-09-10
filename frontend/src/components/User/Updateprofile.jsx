@@ -6,11 +6,13 @@ import { clearErrors, loadUser, updateProfile } from '../../actions/userActions'
 import { UPDATE_PROFILE_RESET } from '../../constants/userContants';
 import { useDispatch, useSelector } from 'react-redux';
 import MetaData from '../layouts/MetaData';
+import { useAlert } from 'react-alert';
 
 
 const Updateprofile = () => {
 
     const dispatch = useDispatch();
+    const alert = useAlert();
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -27,11 +29,12 @@ const Updateprofile = () => {
         }
   
         if (error) {
-          alert(error);
+          alert.error(error);
             dispatch(clearErrors());
         }
         if(isUpdated){
-            alert("Update profile successfully");
+            alert.success("Update profile successfully");
+            
             dispatch(loadUser());
   
               navigate("/me")

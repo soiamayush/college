@@ -10,9 +10,7 @@ const ProtectedRoute = ({ isAdmin, children}) => {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-      if(!user){
         dispatch(loadUser());
-      }
     }, [isAuthenticated, loading, dispatch, user])
   if(loading) {<h1><Loader/></h1>}
 

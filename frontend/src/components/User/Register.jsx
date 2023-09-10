@@ -6,6 +6,7 @@ import { register, clearErrors } from "../../actions/userActions";
 import { useNavigate, Link } from "react-router-dom";
 import defaultavatar from "../../assets/images/default_avatar.jpg";
 import Loader from "../layouts/Loader";
+import { useAlert } from "react-alert";
 
 const Register = () => {const [user, setUser] = useState({
   name: "",
@@ -24,6 +25,8 @@ const dispatch = useDispatch();
 
 // const [email, setEmail] = useState("");
 // const [password, setPassword] = useState("");
+const alert = useAlert();
+
 
 const { isAuthenticated, loading, error } = useSelector(
   (state) => state.auth
@@ -33,12 +36,12 @@ const navigate = useNavigate();
 useEffect(() => {
   if (isAuthenticated) {
     // console.log(isAuthenticated)
-    alert("Registered user successfully!!")
+    alert.success("Registered user successfully!!")
     navigate("/");
   }
 
   if (error) {
-    alert(error);
+    alert.error(error);
     dispatch(clearErrors());
   }
 }, [dispatch, alert,  isAuthenticated, error, navigate]);

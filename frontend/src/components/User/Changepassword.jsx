@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MetaData from "../layouts/MetaData";
 import { UPDATE_PASSWORD_RESET } from "../../constants/userContants";
 import Loader from "../layouts/Loader";
+import { useAlert } from "react-alert";
 
 const Changepassword = () => {
 
@@ -16,14 +17,16 @@ const Changepassword = () => {
 
   const { isUpdated, error, loading } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const alert = useAlert();
+
 
   useEffect(() => {
     if (error) {
-      alert(error);
+      alert.error(error);
       dispatch(clearErrors());
     }
     if (isUpdated) {
-      alert("Update password successfully");
+      alert.success("Update password successfully");
 
       navigate("/me");
 

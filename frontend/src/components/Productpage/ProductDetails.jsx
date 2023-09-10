@@ -11,6 +11,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { addItemToCart } from "../../actions/cartActions";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 import "./productd.scss";
+import { useAlert } from "react-alert";
 
 const productctDetails = () => {
 
@@ -29,6 +30,8 @@ const productctDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+  const alert = useAlert();
+
 
   const dispatch = useDispatch();
   const params = useParams();
@@ -44,7 +47,7 @@ const productctDetails = () => {
     dispatch(getProductDetails(params.id));
 
     if (error) {
-      // alert.error(error);
+      alert.error(error);
       dispatch(clearErrors());
     }
 
@@ -80,9 +83,9 @@ const productctDetails = () => {
   const addToCart = () => {
     if(user){
       dispatch(addItemToCart(params.id, quantity));
-      alert("Added successfully");
+      alert.success("Added successfully");
     }else{
-      alert("Login first to access this resource!!");
+      alert.success("Login first to access this resource!!");
     }
   };
 

@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import MetaData from "../layouts/MetaData";
 import React, { Fragment, useState, useEffect } from "react";
 import Loader from "../layouts/Loader";
+import { useAlert } from "react-alert";
 
 const Forgotpassword = () => {
   const dispatch = useDispatch();
+  const alert = useAlert();
   
 
   const [email, setEmail] = useState("");
@@ -16,11 +18,11 @@ const Forgotpassword = () => {
 
   useEffect(() => {
     if (error) {
-      alert(error);
+      alert.error(error);
       dispatch(clearErrors());
     }
     if (message) {
-      alert("Password changed successfully!!");
+      alert.success("Password changed successfully!!");
     }
   }, [dispatch, alert, error,  message]);
 
