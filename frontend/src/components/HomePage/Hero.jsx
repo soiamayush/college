@@ -1,8 +1,6 @@
 import React from "react";
 import "./Hero.scss";
 import { Link } from "react-router-dom"
-import herobg from "../../assets/images/herobg.jpg"
-import herovideo from "../../assets/video/hero.mp4"
 
 const Hero = () => {
 
