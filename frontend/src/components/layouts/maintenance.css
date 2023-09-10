@@ -1,0 +1,54 @@
+.frag{
+    margin: 400px;
+    padding: 0;
+    background: #fff;
+  }
+  
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: middle;
+    margin-top: 3rem;
+  }
+  
+  .cardmm {
+    padding: 80px;
+    display: flex;
+    gap: 4rem;
+  }
+  
+  .img-responsive {
+    max-height: 100%;
+    max-width: 100%;
+    width: 400px;
+  }
+
+  .constpara{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align :middle;
+  }
+
+  .constpara > h1{
+    font-size: 3rem;
+  }
+
+  @media (max-width : 768px){
+    .cardmm{
+        flex-direction: column;
+    }
+    .constpara{
+        order: 2;
+        text-align: center;
+    }
+
+    .constpara > h1{
+        font-size: 2rem;
+    }
+
+    .img-responsive{
+        order: 1;
+        margin: auto;
+    }
+  }

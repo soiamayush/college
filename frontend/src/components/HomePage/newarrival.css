@@ -1,0 +1,45 @@
+.newArrival{
+    padding: 40px 100px;
+}
+
+
+@media (max-width : 580px){
+  .newArrival{
+    padding: 20px 60px;
+    
+}
+}
+.cardcomp{
+
+  /* display: -webkit-flex;
+  -webkit-justify-content: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  align-items: center; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+@media (max-width: 580px) {
+  /* CSS rules for extra small screens */
+  .cardcomp{
+    justify-content :center;
+  }
+}
+
+
+.newArrival >h2 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.newArrival >h3 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size:x-large;
+
+}

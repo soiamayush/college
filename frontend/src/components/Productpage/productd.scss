@@ -1,0 +1,128 @@
+.counter1{
+    display: inline!important;
+
+}
+
+.pdimg{
+  border-radius: 15%;
+  max-width: 250px;
+}
+
+.counter2{
+    cursor: pointer;
+    padding: 0.1rem 0.5rem;
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.counter3{
+    background-color: white;
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    display: inline!important;
+}
+
+
+.quantity {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 15px 0px;
+  }
+  .quantity__minus,
+  .quantity__plus {
+    display: block;
+    width: 32px;
+    height: 33px;
+    margin: 0;
+    background: #dee0ee;
+    text-decoration: none;
+    text-align: center;
+    line-height: 33px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .quantity__minus:hover,
+  .quantity__plus:hover {
+    background: #575b71;
+    color: #fff;
+  }
+  .quantity__minus {
+    border-radius: 3px 0 0 3px;
+  }
+  .quantity__plus {
+    border-radius: 0 3px 3px 0;
+  }
+  .quantity__input {
+    width: 42px;
+    height: 29px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border-top: 2px solid #dee0ee;
+    border-bottom: 2px solid #dee0ee;
+    border-left: 1px solid #dee0ee;
+    border-right: 2px solid #dee0ee;
+    background: #fff;
+    color: #8184a1;
+  }
+  .quantity__minus:link,
+  .quantity__plus:link {
+    color: #8184a1;
+  }
+  .quantity__minus:visited,
+  .quantity__plus:visited {
+    color: #fff;
+  }
+  
+
+  .pd{
+    display: flex;
+    flex-direction: row;
+    gap: 6rem;
+    justify-content: space-between;
+  }
+
+  @media (max-width : 986px){
+    .pd{
+        gap: 2rem;
+      }
+  }
+
+  .pdsecond{
+    // text-align: center;
+  }
+
+  .dflexx{
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+  }

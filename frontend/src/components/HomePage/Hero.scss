@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+.herohero {
+  // margin: 0;
+  // padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 100px;
+  margin-bottom: 100px;
+}
+
+.img-cont {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.heroimg {
+  flex: 1;
+  // position: absolute;
+  // bottom: 8rem;
+  // right: 7rem;
+  width: 15rem;
+  // margin-right: 5rem;
+  // margin-top: 8rem;
+  margin-top: 7rem;
+  height: fit-content;
+}
+.showcase {
+  // position: absolute;
+  // right: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex: 2;
+  justify-content: space-between;
+  align-items: center;
+  // background: #ddd0c8;
+  transition: 0.5s;
+  // z-index: 2;
+}
+
+@media (max-width: 1024px) {
+  .showcase {
+    justify-content: center;
+  }
+}
+.showcase.active {
+  right: 300px;
+}
+
+.showcase video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // background: #03a9f4;
+  mix-blend-mode: overlay;
+}
+.texty {
+  position: relative;
+  z-index: 10;
+}
+
+.texty h2 {
+  font-size: 3em;
+  // font-weight: 800;
+  color: #ffffff;
+  line-height: 1em;
+  texty-transform: uppercase;
+}
+.texty h3 {
+  font-size: 3em;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1em;
+  texty-transform: uppercase;
+}
+.texty p {
+  font-size: 1.2em;
+  color: #ffffff;
+  margin: 25px 0;
+  font-weight: 400;
+  max-width: 600px;
+}
+.texty a {
+  display: inline-block;
+  font-size: 1em;
+  background: #000000;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 10px;
+  color: #ffffff;
+  letter-spacing: 2px;
+  transition: 0.2s;
+}
+.texty a:hover {
+  letter-spacing: 6px;
+}
+.social {
+  position: absolute;
+  z-index: 10;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.social li {
+  list-style: none;
+}
+.social li a {
+  display: inline-block;
+  margin-right: 20px;
+  filter: invert(1);
+  transform: scale(0.5);
+  transition: 0.5s;
+}
+.social li a:hover {
+  transform: scale(0.5) translateY(-15px);
+}
+.menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 991px) {
+  .heroimg {
+    display: none;
+  }
+  .showcase {
+    min-height: 60vh;
+  }
+  .showcase header {
+    padding: 40px;
+  }
+  .texty h2 {
+    font-size: 2.5em;
+    text-align: center;
+    
+    margin-bottom: 30px;
+  }
+  .texty h3 {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .texty p {
+    text-align: center;
+    font-size: x-large;
+  }
+  .texty a {
+    width: fit-content;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    padding: 20px 80px;
+  }
+  .herohero {
+    flex-direction: column;
+    padding: 0px 40px;
+  }
+  
+}
+
+@media (min-width : 480px) and (max-width : 991px){
+  .hero-section{
+    margin-top: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .showcase {
+    margin-top: 4rem;
+  }
+  .hero-section{
+    margin-top: 180px;
+  }
+  
+}
+@media (min-width: 400px) and (max-width: 480px) {
+  // .hero-section{
+  //   margin-top: 100px;
+  // }  
+}
+
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}

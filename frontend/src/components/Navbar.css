@@ -1,0 +1,15 @@
+.navbarr {
+    background-color: #ddd0c8;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbarr.scrolledd {
+    background-color: #ffffff; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); 
+  }
+
+.nav-logo{    
+  font-size: 2.2rem;
+  color: black;
+  padding-left: 1rem;
+}

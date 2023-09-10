@@ -1,0 +1,322 @@
+$logogo: #3DBB3D;
+$gray: #777777;
+$black: #070707;
+$left: #ddd0c8;
+$aqua: #3FB6A8;
+$white: #FFFFFF;
+
+
+
+.ptag{
+  display: inline;
+}
+
+input:focus{
+  outline: none;
+}
+
+.form-control{
+  
+  display: block;
+  width: 70%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: white;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,900|Montserrat|Roboto');
+
+$hulu: 'Nunito Sans', sans-serif;
+$heading: 'Montserrat', sans-serif;
+$body: 'Roboto', sans-serif;
+
+.parentship{
+    background:  linear-gradient(322deg, rgba(221,208,200,1) 37%, rgba(255,255,255,1) 65%);
+    padding: 4rem 4rem;
+
+}
+
+.contntainerz {
+  background: $white;
+  // width: 540px;
+  height: 700px;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 10%;
+  box-shadow: 2px 5px 20px rgba($gray, .5);
+  max-width: 600px;
+}
+
+@media (min-width : 769px ) and (max-width : 1024px){
+    .contntainer {
+        margin-top: 20%;
+      }
+}
+
+
+
+
+.logogo {
+  float: right;
+  margin-right: 12px;
+  margin-top: 12px;
+  font-family: $hulu;
+  color: $black;
+  font-weight: 900;
+  font-size: 1.5em;
+  letter-spacing: 1px;
+  display: none;
+}
+
+.CTA {
+  width: 80px;
+  height: 40px;
+  right: -20px;
+  bottom: 0;
+  margin-bottom: 90px;
+  position: absolute;
+  z-index: 1;
+  background: $black;
+  font-size: 1em;
+  transform: rotate(-90deg);
+  transition: all .5s ease-in-out;
+  cursor: pointer;
+  .h1class {
+    color: $white;
+    margin-top: 10px;
+    margin-left: 9px;
+  }
+  &:hover {
+    background: $black;
+    transform: scale(1.1);
+  }
+}
+
+.leftbox {
+  float: left;
+  top: -5%;
+  left: 5%;
+  position: absolute;
+  width: 15%;
+  height: 110%;
+  background: $left;
+  box-shadow: 3px 3px 10px rgba($gray, .5);
+}
+
+nav a {
+  list-style: none;
+  padding: 35px;
+  color: $white;
+  font-size: 1.1em;
+  display: block;
+  transition: all .3s ease-in-out;
+  &:hover {
+    color: $black;
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+  &:first-child {
+    margin-top: 7px;
+  }
+}
+
+.activeve {
+  color: $black;
+}
+
+.rightboxz {
+  display: flex;
+  justify-content: end;
+}
+
+
+.profilele, .payment, .subscription, .privacy, .settings {
+  transition: opacity .5s ease-in;
+  position: absolute;
+  width: 70%;
+  margin: 50px auto;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.h1class{
+  font-family: $heading;
+  color: $left;
+  font-size: 1em;
+  margin-top: 40px;
+  margin-bottom: 35px;
+}
+
+.h2class {
+  color: $gray;
+  font-family: $body;
+  width: 80%;
+  text-transform: uppercase;
+  font-size: 8px;
+  letter-spacing: 1px;
+  margin-left: 2px;
+}
+
+.pclass {
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(to right, $black, rgba($left,.5)) 1 0%;
+  border-top: 0;
+  width: 80%;
+  font-family: $heading;
+  font-size: .7em;
+  padding: 7px 0;
+  color: $black;
+}
+.spanclass {
+  font-size: .5em;
+  color: $gray;
+}
+
+.btnbtn {
+  float: right;
+  font-family: $body;
+  text-transform: uppercase;
+  font-size: 10px;
+  border: none;
+  color: $black;
+}
+
+.btnbtn:hover {
+  text-decoration: underline;
+  font-weight: 900;
+}
+
+.inputclass {
+  border: 1px solid lighten($gray,40%); 
+  font-family: $body;
+  padding: 2px;
+  margin: 0;
+}
+
+.privacy h2{
+  margin-top: 25px;
+}
+
+.settings h2{
+  // margin-top: 25px;
+}
+
+.settings h1{
+  // margin-top: 25px;
+}
+
+.noshow {
+  opacity: 0;
+}
+
+
+@media (min-width : 481px) and (max-width : 768px){
+    // nav a {
+    //     padding: 20px;
+    // margin-bottom: 6rem;
+        
+    //   }
+    //   .contntainer{
+    //     width: 380px;
+    //   }
+    //   .rightboxz {
+    //     width: 40%;
+    //   }
+}
+
+@media (max-width : 768px){
+    .leftbox{
+        display: none;
+    }
+    .parentship{
+        padding: 4rem;
+    }
+    .contntainer{
+        width: 300px;
+    }
+    .rightboxz{
+      
+    justify-content: center;
+    }
+}
+
+
+
+// order success
+    .h1text {
+      color: #88B04B;
+      font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+      font-weight: 900;
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+    .ptext {
+      color: #404F5E;
+      font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+      font-size:20px;
+      margin: 0;
+    }
+  .checkmark {
+    color: #ffffff;
+    font-size: 77px;
+    line-height: 178px;
+    margin-left:-15px;
+  }
+  .cardp {
+    background:  #ffffff;
+    padding: 45px;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px #C8D0D8;
+    display: inline-block;
+    margin: 0 auto;
+  }
+
+  .check{
+    // style={{borderRadius:"200px"} , {height:"200px"}, {width:"200px"},{ background: "#F8FAF5"},  {margin : "0 auto"}} 
+    border-radius: 200px;
+    height: 170px;
+    width: 170px;
+    background: #000000;
+    margin: 0 auto;
+  }
+
+  .contntaineroc{
+  height: 900px;
+
+  }
+
+.cartItemcont{
+  display: block;
+  margin-bottom: 20px;
+}
+
+  @media (max-width : 768px){
+    .checkmark{
+      font-size: 70px;
+      line-height: 160px;
+    }
+    .check{
+      height: 150px;
+      width: 150px;
+    }
+    .cardp{
+      width: 300px;
+    }
+  }
+
+  
