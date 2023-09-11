@@ -114,8 +114,16 @@
 	
 #colorNav li:hover ul {
 	max-height: 300px; /* Increase when adding more dropdown items */
+  width: auto;
+  margin: auto;
   }
+  .ibtn{
+    width: auto;
+    margin-left: 145px;
 }
+}
+
+
 
 /*----------------------------
 	The Footer

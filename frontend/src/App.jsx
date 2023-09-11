@@ -28,20 +28,28 @@ import Newpassword from './components/User/Newpassword'
 import Myorder from './components/order/Myorder'
 
 
-// import { Elements } from "@stripe/react-"
-// import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import Dashboard from './components/Admin/Dashboard'
 import Maintenance from './components/layouts/Maintenance'
+import axios from 'axios'
 
 
 function App() {
 
   
-  const [stripeApiKey, setStripeApiKey] = useState("")
-  const {user ,  loading, isAuthenticated } = useSelector(state => state.auth)
+  const [stripeApiKey, setStripeApiKey] = useState('');
+  const { user, isAuthenticated, loading } = useSelector(state => state.auth)
 
   useEffect(() => {
-      store.dispatch(loadUser());
+    store.dispatch(loadUser());
+
+    async function getStripeApiKey() {
+      const { data } = await axios.get("/api/v1/stripeapi");
+      setStripeApiKey(data.stripeApiKey);
+    }
+
+    getStripeApiKey()
   }, [])
 
   return (
@@ -68,18 +76,22 @@ function App() {
           <Route path="/me/update/password" element={<ProtectedRoute ><Changepassword/></ProtectedRoute>} exact/>
           <Route path="/me/forgot/password" element={<ProtectedRoute ><Forgotpassword/></ProtectedRoute>} exact/>
           <Route path="/me/password/reset/:id" element={<ProtectedRoute ><Newpassword/></ProtectedRoute>} exact/>
-          <Route path="/me" element={<ProtectedRoute ><User/></ProtectedRoute>} exact/>
+          <Route path="/me" element={<ProtectedRoute><User/></ProtectedRoute>} exact/>
           <Route path="/dashboard" element={<Dashboard/>} exact/>
           <Route path="/maintenance" element={<Maintenance/>} exact/>
  
+        
+
+          {stripeApiKey &&      
             <Route path="/payment" 
             element={
+              <Elements stripe={loadStripe(stripeApiKey)}>
               <ProtectedRoute>
               <Payment/>
               </ProtectedRoute>
-            } 
-            exact
-            />
+            </Elements>
+            } />
+            }
 
         </Routes>
         <Footer/>

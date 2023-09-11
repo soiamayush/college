@@ -3,28 +3,30 @@ import { useDispatch, useSelector } from "react-redux";
 import MetaData from "../layouts/MetaData";
 import React, { Fragment, useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
-// import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement} from "@stripe/react-stripe-js"
+import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement} from "@stripe/react-stripe-js"
 import axios from "axios";
 import { createOrder, clearErrors } from "../../actions/orderActions";
+import { useAlert } from "react-alert";
 
 
 const options = {
   style : {
       base : {
-          fontSize : "16px"
+          fontSize : "16px",
       },
       invalid : {
           color : "#9e2146"
       }
+      
   }
 }
 
 
 
 const Payment = () => {
-
-  // const stripe = useStripe();
-  // const elements = useElements();
+  const alert = useAlert();
+  const stripe = useStripe();
+  const elements = useElements();
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
@@ -34,9 +36,8 @@ const Payment = () => {
 
   useEffect(() => {
 
-    alert("Currently website is in maintenance !!");
       if (error) {
-          alert(error)
+          alert.error(error)
           dispatch(clearErrors())
       }
 
@@ -60,70 +61,66 @@ const Payment = () => {
   }
 
   const submitHandler = async (e) => {
-    navigate("/maintenance")
-      // e.preventDefault();
+      e.preventDefault();
 
-      // document.querySelector('#pay_btn').disabled = true;
+      document.querySelector('#pay_btn').disabled = true;
 
-      // let res;
-      // try {
+      let res;
+      try {
 
-      //     const config = {
-      //         headers: {
-      //             'Content-Type': 'application/json'
-      //         }
-      //     }
+          const config = {
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          }
 
-      //     res = await axios.post('api/v1/payment/process', paymentData, config)
+          res = await axios.post('/api/v1/payment/process', paymentData, config)
 
-      //     const clientSecret = res.data.client_secret;
+          const clientSecret = res.data.client_secret;
 
-      //     console.log(clientSecret);
+          console.log(clientSecret);
 
-      //     if (!stripe || !elements) {
-      //         return;
-      //     }
+          if (!stripe || !elements) {
+              return;
+          }
 
-      //     const result = await stripe.confirmCardPayment(clientSecret, {
-      //         payment_method: {
-      //             card: elements.getElement(CardNumberElement),
-      //             billing_details: {
-      //                 name: user.name,
-      //                 email: user.email
-      //             }
-      //         }
-      //     });
+          const result = await stripe.confirmCardPayment(clientSecret, {
+              payment_method: {
+                  card: elements.getElement(CardNumberElement),
+                  billing_details: {
+                      name: user.name,
+                      email: user.email
+                  }
+              }
+          });
 
-      //     if (result.error) {
-      //         alert.error(result.error.message);
-      //         document.querySelector('#pay_btn').disabled = false;
-      //     } else {
+          if (result.error) {
+              alert.error(result.error.message);
+              document.querySelector('#pay_btn').disabled = false;
+          } else {
 
-      //         // The payment is processed or not
-      //         if (result.paymentIntent.status === 'succeeded') {
+              // The payment is processed or not
+              if (result.paymentIntent.status === 'succeeded') {
 
-      //             order.paymentInfo = {
-      //                 id: result.paymentIntent.id,
-      //                 status: result.paymentIntent.status
-      //             }
+                  order.paymentInfo = {
+                      id: result.paymentIntent.id,
+                      status: result.paymentIntent.status
+                  }
 
-      //             dispatch(createOrder(order))
+                  dispatch(createOrder(order))
 
-      //             navigate('/success')
-      //         } else {
-      //             alert.error('There is some issue while payment processing')
-      //         }
-      //     }
+                  navigate('/success')
+              } else {
+                  alert.error('There is some issue while payment processing')
+              }
+          }
 
 
-      // } catch (error) {
-      //     document.querySelector('#pay_btn').disabled = false;
-      //     alert.error(error.response.data.message)
-      // }
+      } catch (error) {
+          document.querySelector('#pay_btn').disabled = false;
+          alert.error(error.response.data.message)
+      }
   }
-   
-
-
 
   return (
    <>
@@ -196,13 +193,18 @@ const Payment = () => {
   <form className="form" autoComplete="off" noValidate onSubmit={submitHandler}>
     <fieldset>
       <label htmlFor="card-number">Card Number</label>
-      <div className='inputcont'>
+      {/* <div className='inputcont'>
         <input type="num" id="card-number" className="input-cart-number" maxLength="4" />
         <input type="num" id="card-number-1" className="input-cart-number" maxLength="4" />
         <input type="num" id="card-number-2" className="input-cart-number" maxLength="4" />
         <input type="num" id="card-number-3" className="input-cart-number" maxLength="4" />
-
-      </div>
+      </div> */}
+       <CardNumberElement
+                    type="text"
+                    id="card_num_field"
+                    className="form-control"
+                    options={options}
+                  />
     </fieldset>
     <fieldset>
       <label htmlFor="card-holder">Card holder</label>
@@ -210,7 +212,13 @@ const Payment = () => {
     </fieldset>
     <fieldset className="fieldset-expiration">
       <label htmlFor="card-expiration-month">Expiration date</label>
-      <div className="select">
+      <CardExpiryElement
+                    type="text"
+                    id="card_exp_field"
+                    className="form-control"
+                    options={options}
+                  />
+      {/* <div className="select">
         <select id="card-expiration-month">
           <option></option>
           <option>01</option>
@@ -226,8 +234,8 @@ const Payment = () => {
           <option>11</option>
           <option>12</option>
         </select>
-      </div>
-      <div className="select">
+      </div> */}
+      {/* <div className="select">
         <select id="card-expiration-year">
           <option></option>
           <option>2023</option>
@@ -240,14 +248,20 @@ const Payment = () => {
           <option>2030</option>
           <option>2031</option>
         </select>
-      </div>
+      </div> */}
     </fieldset>
     <fieldset className="fieldset-ccv">
       <label htmlFor="card-ccv">CVV</label>
-      <input type="text" id="card-ccv" maxLength="3" />
+      <CardCvcElement
+                    type="text"
+                    id="card_cvc_field"
+                    className="form-control"
+                    options={options}
+                  />
+      {/* <input type="text" id="card-ccv" maxLength="3" /> */}
     </fieldset>
 
-    <button className="btnz">
+    <button className="btnz" id="pay_btn">
     Pay {` - $${orderInfo && orderInfo.totalPrice}`}
     </button>
     </form>

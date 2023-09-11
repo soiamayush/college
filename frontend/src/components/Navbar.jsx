@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../actions/userActions";
 import { useAlert } from "react-alert"
 import "./layouts/dropdown.css"
+import Dropdown from ".././components/layouts/Dropdown"
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -70,10 +71,10 @@ const Navbar = () => {
   // Your list of elements, for example, as an array of items
   const elements = [
     { id: 1, text: "Home", path: "/" },
-    { id: 2, text: "shop", path: "/shop" },
-    { id: 3, text: "blog", path: "/blog" },
+    { id: 2, text: "shop", path: "/shop"},
+    { id: 3, text: "blog", path: "/blog"},
     { id: 4, text: "About", path: "/about" },
-    { id: 5, text: "Contact", path: "/contact" },
+    { id: 5, text: "Contact", path: "/contact"},
   ];
   const cart = [
     { id: 6, className: "fa-solid fa-bag-shopping", path: "/cart" },
@@ -123,12 +124,12 @@ const Navbar = () => {
                 <ul>
                   <li className="">
                     <i
-                      className="fa-solid fa-caret-down"
+                      className="fa-solid fa-caret-down ibtn"
                       style={{ fontSize: "25px" }}
                     ></i>
                     <ul>
                       <li>
-                        <Link to="/maintenance" onClick={toggleMenu}>Orders</Link>
+                        <Link to="/me/order" onClick={toggleMenu}>Orders</Link>
                       </li>
                       <li>
                       <Link to="/maintenance" onClick={toggleMenu}>Dashboard</Link>

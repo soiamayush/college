@@ -75,7 +75,7 @@ const OrderConfirm = () => {
   <h2 className="h2class">Your cart Items : </h2>
   {cartItems.map((item, index) => (
     <Fragment >
-      <span className='cartItemcont' key={index}>
+      <span className='cartItemcont' key={item.product}>
       <p className="ptag"><Link to={`/products/${item.product}`} style={{textDecoration : "none", color : "black", marginBottom : "5px", display : "block"}}>{item.name}</Link></p>
       <p className='ptag'>{item.quantity} x ${item.price} = <b>${(item.quantity * item.price).toFixed(2)}</b></p>
       </span>

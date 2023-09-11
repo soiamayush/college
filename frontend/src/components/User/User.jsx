@@ -14,11 +14,10 @@ const User = () => {
                 <MetaData title={"Your profile"}/>
         
              <div className="first">
-                 {/* <div className="left">
-                     <img src="https://i.imgur.com/cMy8V5j.png" alt="user" width="100"/>
-                     <h4>{user.name}</h4>
-                 </div> */}
                          <h2 className="dflex headd" >My Profile</h2>
+                 <div className="left">
+                     <img  src={user.avatar.url} alt={user.name} width="100"/>
+                 </div>
                  <div className="right">
                      <div className="info">
                          <div className="info_data">

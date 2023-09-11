@@ -7,82 +7,110 @@ import { useNavigate, Link } from "react-router-dom";
 import defaultavatar from "../../assets/images/default_avatar.jpg";
 import Loader from "../layouts/Loader";
 import { useAlert } from "react-alert";
+import ".././layouts/imguploader.css";
 
-const Register = () => {const [user, setUser] = useState({
-  name: "",
-  email: "",
-  password: "",
-});
+const Register = () => {
+  // for uploader
+  const [selectedImage, setSelectedImage] = useState(null);
 
-const { name, email, password } = user;
+  // Handle file selection
+  const handleFileSelect = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedImage(URL.createObjectURL(file));
+    }
+  };
 
-const [profile, setprofile] = useState("");
-const [profilePreview, setprofilePreview] = useState(
-  defaultavatar
-);
+  // Handle drag and drop events
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
 
-const dispatch = useDispatch();
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files[0];
+    if (file) {
+      setSelectedImage(URL.createObjectURL(file));
+    }
+  };
 
-// const [email, setEmail] = useState("");
-// const [password, setPassword] = useState("");
-const alert = useAlert();
+  //
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
+  const { name, email, password } = user;
 
-const { isAuthenticated, loading, error } = useSelector(
-  (state) => state.auth
-); // auth from store.js
-const navigate = useNavigate();
+  const [avatar, setAvatar] = useState("");
+  const [avatarPreview, setAvatarPreview] = useState({ defaultavatar });
 
-useEffect(() => {
-  if (isAuthenticated) {
-    // console.log(isAuthenticated)
-    alert.success("Registered user successfully!!")
-    navigate("/");
-  }
+  const alert = useAlert();
+  const dispatch = useDispatch();
 
-  if (error && !error.includes("jwt must be provided")) {
-    alert.error(error);
-    dispatch(clearErrors());
-}
-}, [dispatch, alert,  isAuthenticated, error, navigate]);
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
-const submitHandler = (e) => {
-  e.preventDefault();
+  const { isAuthenticated, loading, error } = useSelector(
+    (state) => state.auth
+  ); // auth from store.js
+  const navigate = useNavigate();
 
-  const formData = new FormData();
+  useEffect(() => {
+    if (isAuthenticated) {
+      // console.log(isAuthenticated)
+      navigate("/");
+    }
 
-  formData.set("name", name);
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+  }, [dispatch, alert, isAuthenticated, error, navigate]);
 
-  formData.set("email", email);
+  const submitHandler = (e) => {
+    e.preventDefault();
 
-  formData.set("password", password);
+    const formData = new FormData();
 
-  // formData.set("profile", profile);
+    formData.set("name", name);
 
-  var object = {};
+    formData.set("email", email);
 
-  formData.forEach((value, key) => (object[key] = value));
+    formData.set("password", password);
 
-  var json = object;
+    formData.set("avatar", avatar);
 
-  dispatch(register(json));
-};
+    var object = {};
 
-const onChange = (e) => {
-  if (e.target.name === "profile") {
-    const reader = new FileReader();
+    formData.forEach((value, key) => (object[key] = value));
 
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setprofilePreview(reader.result);
-        setprofile(reader.result);
+    var json = object;
+
+    dispatch(register(json));
+  };
+
+  const onChange = (e) => {
+    if (e.target.name === "avatar") {
+      const file = e.target.files[0];
+      if (file) {
+        setSelectedImage(URL.createObjectURL(file));
       }
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  } else {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  }
-};
+      
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setAvatarPreview(reader.result);
+          setAvatar(reader.result);
+        }
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    } else {
+      setUser({ ...user, [e.target.name]: e.target.value });
+    }
+  };
 
   return (
     <Fragment>
@@ -90,8 +118,8 @@ const onChange = (e) => {
         <Loader />
       ) : (
         <div className="loginparent">
-      <MetaData title={"Register User"} />
-      
+          <MetaData title={"Register User"} />
+
           <div className="login-page">
             <div className="formrm">
               <form className="login-form" onSubmit={submitHandler}>
@@ -116,42 +144,37 @@ const onChange = (e) => {
                   name="password"
                   onChange={onChange}
                 />
-                {/* <div className="d-flex align-items-center profilecont">
-                  <div>
-                    <figure className="avatar mr-3 item-rtl">
-                      <img
-                        src={profilePreview}
-                        className="rounded-circle"
-                        alt="Avatar preview"
+
+                <div
+                  className="profile-image-uploader"
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                >
+                  {selectedImage ? (
+                    <img src={selectedImage} alt="Profile" />
+                  ) : (
+                    <div className="upload-text">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={onChange}
+                      name="avatar"
+
+                        id="fileInput"
+                        style={{ display: "none" }}
                       />
-                    </figure>
-                  </div>
-                  <div className="custom-file">
-                    <input
-                      type="file"
-                      name="profile"
-                      className="custom-file-input"
-                      id="customFile"
-                      accept="images/*"
-                      onChange={onChange}
-                    />
-                    <label className="custom-file-label" htmlFor="customFile">
-                      Choose Avatar
-                    </label>*/}
-                  {/* </div> 
-                </div> */}
-                <button disabled ={loading ? true : false}>create</button>
+                      <label htmlFor="fileInput">
+                        Drag & Drop or Click to Upload
+                      </label>
+                    </div>
+                  )}
+                </div>
+                <button disabled={loading ? true : false}>create</button>
                 <p className="messagege">
                   Already registered? <Link to="/login">Sign In</Link> or{" "}
                   <Link to="/me/forgot/password">Forgot password?</Link>
                 </p>
               </form>
-              {/* <form className="login-form">
-        <input type="text" placeholder="username"/>
-        <input type="password" placeholder="password"/>
-        <button>Register</button>
-        <p className="messagege">Not registered? <Link to="#">Create an account</Link></p>
-      </form> */}
             </div>
           </div>
         </div>

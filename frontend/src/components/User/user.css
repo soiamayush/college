@@ -12,9 +12,7 @@
   flex-direction: column;
 }
 
-.headd{
-  margin-bottom: 20px;
-}
+
 
 .userparent{
   margin: 0;
@@ -263,4 +261,22 @@
   }
   .btn-7 span:hover:after {
     width: 100%;
+  }
+
+  .left{
+    display: flex;
+   justify-content: center; 
+   margin: 40px auto;
+  }
+
+  .left > img{
+    min-width: 250px;
+    max-width: fit-content;
+  }
+
+  @media (max-width : 768px){
+    .left > img{
+      min-width: 200px;
+      max-width: fit-content;
+    }
   }
