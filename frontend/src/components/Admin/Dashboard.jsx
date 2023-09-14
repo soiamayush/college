@@ -116,10 +116,10 @@ const Dashboard = () => {
                 <i className="bx bxs-cart-download"></i>
             </div>
           </div>
-          <div className="details">
+          <div className="detailsx">
             <div className="recent_project">
               <div className="card_header">
-                <h2>Lastet Products</h2>
+                <h2>Latest Products</h2>
               </div>
               <table>
                 <thead>
