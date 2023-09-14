@@ -6,7 +6,7 @@ const Contact = () => {
 <>
 <MetaData title="Contact us" />
 
-<section id="contact-details" className="section-p1">
+<section id="contact-details" className="section-p1ab">
         <div className="details">
             <span>GET IN TOUCH</span>
             <h2>Discover Fabrics Galore at Our Prime Location!</h2>

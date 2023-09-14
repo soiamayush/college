@@ -255,7 +255,7 @@
   color: var(--dark-blue);
 }
 
-.details {
+.detailsx {
   position: relative;
   width: 100%;
   padding: 20px;
@@ -264,8 +264,8 @@
   grid-gap: 20px;
 }
 
-.details .recent_project,
-.details .recent_customers {
+.detailsx .recent_project,
+.detailsx .recent_customers {
   position: relative;
   display: grid;
   min-height: 330px;
@@ -277,32 +277,32 @@
   white-space: nowrap;
 }
 
-.details table {
+.detailsx table {
   width: 100%;
   margin-top: 10px;
   border-collapse: collapse;
 }
 
-.details .card_header h2 {
+.detailsx .card_header h2 {
   position: relative;
   font-weight: 500;
   line-height: 1.2;
   color: #343a40;
 }
 
-.details .recent_project table tr {
+.detailsx .recent_project table tr {
   border-bottom: 1px solid #f0f0f0;
 }
 
-.details .recent_project table tbody tr:last-child {
+.detailsx .recent_project table tbody tr:last-child {
   border-bottom: none;
 }
 
-.details .recent_project table tr td {
+.detailsx .recent_project table tr td {
   padding: 1rem 1rem;
 }
 
-.details .recent_project table tbody tr td {
+.detailsx .recent_project table tbody tr td {
   position: relative;
   font-size: .938rem;
   font-weight: 500;
@@ -310,14 +310,14 @@
   color: var(--dark-blue);
 }
 
-.details .recent_project table tbody tr td:nth-child(2) {
+.detailsx .recent_project table tbody tr td:nth-child(2) {
   padding-left: 2rem;
 }
-.details .recent_project table tbody tr td:last-child {
+.detailsx .recent_project table tbody tr td:last-child {
   padding-left: 2rem;
 }
 
-.details .badge {
+.detailsx .badge {
   position: relative;
   display: inline-block;
   padding: 0.38em 0.65em;
@@ -374,15 +374,15 @@
   color: var(--white);
 }
 
-.details .recent_customers {
+.detailsx .recent_customers {
   position: relative;
 }
 
-.details .recent_customers table tr {
+.detailsx .recent_customers table tr {
   height: 80px;
 }
 
-.details .recent_customers table tr td h4 {
+.detailsx .recent_customers table tr td h4 {
   position: relative;
   font-size: 16px;
   font-weight: 500;
@@ -390,13 +390,13 @@
   color: var(--dark-blue);
 }
 
-.details .recent_customers table tr td span {
+.detailsx .recent_customers table tr td span {
   position: relative;
   font-size: 14px;
   color: #999;
 }
 
-.details .recent_customers .info_img img {
+.detailsx .recent_customers .info_img img {
   position: relative;
   width: 40px;
   height: 40px;
@@ -434,11 +434,11 @@
   .card-boxes {
     grid-template-columns: repeat(2, 1fr);
   }
-  .details {
+  .detailsx {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .details .recent_customers table {
+  .detailsx .recent_customers table {
     width: 50%;
     margin-top: 30px;
   }
@@ -455,11 +455,11 @@
     width: 100%;
     grid-template-columns: repeat(1, 1fr);
   }
-  .details {
+  .detailsx {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .details .recent_customers table {
+  .detailsx .recent_customers table {
     width: 100%;
     margin-top: 30px;
   }
