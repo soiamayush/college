@@ -202,6 +202,7 @@ const productctDetails = () => {
 
               <div className="pdfirst">
               <h2>$ {product.price}.00</h2>
+              <div className="flexy">
                 <div className="quantity">
                   <a className="quantity__minus" title="Decrement">
                     <span
@@ -231,6 +232,8 @@ const productctDetails = () => {
                   Add To Cart
                 </button> */}
                 <button className="custom-btn btn-7" onClick={addToCart}  disabled={product.stock === 0}><span><Link style={{textDecoration : "none", color : "black"}}>Add to cart</Link> </span></button>
+
+              </div>
                 <p>
                   Status :{" "}
                   {product.stock > 0 ? (

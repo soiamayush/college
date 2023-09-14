@@ -40,6 +40,7 @@ import Updateproduct from './components/Admin/Updateproduct'
 import Processorder from './components/Admin/Processorder'
 import CreateProduct from './components/Admin/CreateProduct'
 import Resetpass from './components/User/Resetpass'
+import Vieworder from './components/shipping/Vieworder'
 
 
 function App() {
@@ -77,6 +78,7 @@ function App() {
           <Route path="/shipping" element={<ProtectedRoute ><Shipping/></ProtectedRoute>} exact/>
           <Route path="/order/confirm" element={<ProtectedRoute ><OrderConfirm/></ProtectedRoute>} exact/>
           <Route path="/order/me" element={<ProtectedRoute ><Myorder/></ProtectedRoute>} exact/>
+          <Route path="/order/:id" element={<ProtectedRoute ><Vieworder/></ProtectedRoute>} exact/>
           <Route path="/success" element={<ProtectedRoute ><Ordersuccess/></ProtectedRoute>} exact/>
           <Route path="/me/update" element={<ProtectedRoute ><Updateprofile/></ProtectedRoute>} exact/>
           <Route path="/me/order" element={<ProtectedRoute ><Myorder/></ProtectedRoute>} exact/>

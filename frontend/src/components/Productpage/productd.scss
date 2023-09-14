@@ -111,6 +111,19 @@
     justify-content: space-between;
   }
 
+  @media (max-width : 768px){
+    .pd{
+      flex-direction: column;
+    }
+    .btn-7{
+      margin: 1rem 2rem !important ;
+    }
+    .flexy{
+      display: flex;
+      justify-content: center;
+    }
+  }
+
   @media (max-width : 986px){
     .pd{
         gap: 2rem;
