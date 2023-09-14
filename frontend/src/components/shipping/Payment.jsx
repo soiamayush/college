@@ -106,7 +106,6 @@ const Payment = () => {
             status: result.paymentIntent.status,
           };
           
-          console.log(order)
           dispatch(createOrder(order));
     localStorage.removeItem('cartItems');  
           alert.success("payment recieved")

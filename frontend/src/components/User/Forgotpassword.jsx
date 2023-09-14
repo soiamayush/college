@@ -22,7 +22,6 @@ const Forgotpassword = () => {
       dispatch(clearErrors());
     }
     if (message) {
-      console.log(message)
       alert.success(message);
     }
   }, [dispatch, alert, error,  message]);
@@ -39,7 +38,6 @@ const Forgotpassword = () => {
     formData.forEach((value, key) => (object[key] = value));
 
     var json = object;
-    console.log(json)
 
     dispatch(forgotPassword(json));
   };

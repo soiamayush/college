@@ -6,6 +6,8 @@ import Loader from '../layouts/Loader';
 import MetaData from '../layouts/MetaData';
 const User = () => {
   const { user, loading } = useSelector(state => state.auth);
+  const {  orders } = useSelector((state) => state.myOrders);
+
 
   return (
     <Fragment>
@@ -30,7 +32,7 @@ const User = () => {
                               </div>
                            </div>
                          </div>
-                         <button className="custom-btn btn-7"><span><Link to="/me/update" style={{textDecoration : "none", color : "black"}}>Update Profile</Link> </span></button>
+                         <button className="custom-btn btn-7"><span><Link to="/me/update" style={{textDecoration : "none", color : "black", fontSize : "small"}}>Update Profile</Link> </span></button>
                      </div>
                    
                    <div className="projects">
@@ -40,8 +42,8 @@ const User = () => {
                                  <p className="dflex" >{String(user.createdAt).substring(0, 10)}</p>
                               </div>
                               <div className="data">
-                                <h4 className='dflex'>Most Viewed</h4>
-                                 <p className="dflex" >dolor sit amet.</p>
+                                <h4 className='dflex'>Total orders</h4>
+                                 <p className="dflex" >{(orders.length)}</p>
                            </div>
                            <div className='dflex'>
                            <button className="custom-btn btn-7"><span><Link to="/me/update/password" style={{textDecoration : "none", color : "black"}}>Change Password</Link> </span></button>
