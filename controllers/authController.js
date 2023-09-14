@@ -15,7 +15,6 @@ exports.registerUser = catchAsyncError (async (req, res, next) => {
         width : 150,
         crop : "scale"
     })
-    console.log(result);
 
     const user = await User.create({
         name,
@@ -71,14 +70,15 @@ exports.forgotPassword = catchAsyncError (async (req, res, next) =>  {
     //get reset token
     const resetToken = user.getResetPasswordToken();
     await user.save({ validateBeforeSave : false});
-
+    
     const resetUrl = `${req.protocol}://${req.get("host")}/password/reset/${resetToken}` // for deployment
     // const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}` // for producttion 
-
+    
     const message = `Your password reset link is as follows : \n\n${resetUrl}\n\nIf you have not requested email, then ignore it.`
-
-
+    
+    
     try {
+        // console.log("second")
         await sendMail ({
             email : user.email,
             subject : "Becca password recovery",
@@ -104,7 +104,7 @@ exports.forgotPassword = catchAsyncError (async (req, res, next) =>  {
 
 exports.resetPassword = catchAsyncError (async (req, res, next) =>  {
     //hash URL token
-    const resetPasswordToken = crypto.createHash("sha2565").update(req.params.token).digest("hex");
+    const resetPasswordToken = crypto.createHash("sha256").update(req.params.token).digest("hex");
 
     const user = await User.findOne({
         resetPasswordToken,
@@ -168,22 +168,22 @@ exports.updateProfile = catchAsyncError(async (req, res, next) => {
     }
 
     
-    // if(req.body.avatar !== ""){
-    //     const user = await User.findById(req.user.id);
-    //     const image_id = await user.avatar.public_id;
-    //     const res = await cloudinary.v2.uploader.destroy(image_id)
+    if(req.body.avatar !== ""){
+        const user = await User.findById(req.user.id);
+        const image_id = await user.avatar.public_id;
+        const res = await cloudinary.v2.uploader.destroy(image_id)
 
-    //     const result  = await cloudinary.v2.uploader.upload(req.body.profile, {
-    //         folder : "avatars",
-    //         width : 150,
-    //         crop : "scale"
-    //     })
+        const result  = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder : "avatars",
+            width : 150,
+            crop : "scale"
+        })
 
-    //     newUserData.avatar = { 
-    //         public_id : result.public_id ,
-    //         url : result.secure_url
-    //     }
-    // }
+        newUserData.avatar = { 
+            public_id : result.public_id ,
+            url : result.secure_url
+        }
+    }
     const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
         new : true,
         runValidators : true,
@@ -268,11 +268,13 @@ exports.deleteUser = catchAsyncError(async (req, res, next) => {
     }
 
     //remove avatar from cludinary 
-    const image_id = await user.avatar.public_id;
-    await cloudinary.v2.uploader.destroy(image_id)
+    if(user.avatar.public_id){
+        const image_id = await user.avatar.public_id;
+        await cloudinary.v2.uploader.destroy(image_id)
+    }
 
 
-    await user.remove();
+    await user.deleteOne();
 
     res.status(200).json({
         success : true,

@@ -59,7 +59,6 @@ exports.myOrders = catchAsyncErrors(async (req, res, next) => {
 
     // console.log(req.user)
     const orders = await Order.find({user : req.user.id});
-    console.log(orders)
 
 
     res.status(200).json({
@@ -72,15 +71,16 @@ exports.myOrders = catchAsyncErrors(async (req, res, next) => {
 
 exports.allOrders = catchAsyncErrors(async (req, res, next) => {
 
-    const orders = await Order.find({user : req.user.id});
+    const orders = await Order.find()
 
     let totalAmount = 0;
-    orders.forEach( order => {
+
+    orders.forEach(order => {
         totalAmount += order.totalPrice
     })
 
     res.status(200).json({
-        success : true,
+        success: true,
         totalAmount,
         orders
     })
@@ -90,26 +90,22 @@ exports.allOrders = catchAsyncErrors(async (req, res, next) => {
 // update/process order  - admin => api/v1/admin/order/:id
 
 exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
+    const order = await Order.findById(req.params.id)
+    if (order.orderStatus === 'Delivered') {
+        return next(new ErrorHandler('You have already delivered this order', 400))
+    }
 
-    const order = await Order.findById(req.params.id);
+    // order.orderItems.forEach(async item => {
+    //     await updateStock(item.product, item.quantity)
+    // })
 
-    if(order.orderStatus === "Delivered"){
-        return next(new ErrorHandler("Your product have already been delivered", 400))
-    };
+    order.orderStatus = req.body.status,
+        order.deliveredAt = Date.now()
 
-
-    order.orderItems.forEach(async item => {
-
-        await updateStock (item.product, item.quantity)
-    });
-
-    order.orderStatus = req.body.status;
-    order.deliveredAt = Date.now();
-
-    await order.save();
+    await order.save()
 
     res.status(200).json({
-        success : true,
+        success: true,
     })
 })
 
@@ -130,7 +126,7 @@ exports.deleteOrder = catchAsyncErrors (async (req, res, next) => {
         return next (new ErrorHandler("No order found with this ID", 404))
     }
 
-    await order.remove();
+    await order.deleteOne();
 
     res.status(200).json({
         success : true
