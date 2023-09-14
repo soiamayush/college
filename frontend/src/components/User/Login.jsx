@@ -32,7 +32,7 @@ const Login = () => {
           navigate(redirect);
       }
 
-      if (error && !error.includes("jwt must be provided")  && !error.includes("CANNOT READ PROPERTIES OF NULL (READING 'ID')")) {
+      if (error && !error.includes("jwt must be provided")  && !error.includes("(READING 'ID')")) {
           alert.error(error);
           dispatch(clearErrors());
       }
