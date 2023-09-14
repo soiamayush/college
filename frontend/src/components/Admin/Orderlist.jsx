@@ -116,7 +116,7 @@ const Orderlist = () => {
                       <td>{order.orderStatus}</td>
                       <td>
                         <Link
-                          to={`/admin/order/${order._id}`}
+                          to={`/admin/order/${order._id}`} 
                           className="btn btn-primary productlink"
                           style={{display : "inline"}}
                         >
