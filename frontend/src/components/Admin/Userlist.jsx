@@ -69,7 +69,7 @@ const Userlist = () => {
             </li>
             <li>
               <Link to="/admin/orders" >
-                <i className="bx bx-user"></i>
+                <i className="bx bxs-cart-add"></i>
                 <span className="links_name">Orders</span>
               </Link>
             </li>
@@ -84,12 +84,6 @@ const Userlist = () => {
                 <i className="bx bxs-truck"></i>
                 <span className="links_name">Create product</span>
               </Link>
-            </li>
-            <li className="login">
-              <a href="#">
-                <span className="links_name login_out">Login Out</span>
-                <i className="bx bx-log-out" id="log_out"></i>
-              </a>
             </li>
           </ul>
         </div>
