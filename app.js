@@ -4,7 +4,7 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const connectDatabase = require("./config/database");
 
-await connectDatabase();
+ connectDatabase();
 const app = express();
 app.use(cookieParser());
 app.use(cors({
