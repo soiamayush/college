@@ -1,0 +1,111 @@
+/*	
+	Table Responsive
+	===================
+	Author: https://github.com/pablorgarcia
+ */
+
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+.blue {
+  color: #185875;
+}
+.yellow {
+  color: #fff842;
+}
+
+.containerx th h1 {
+  font-weight: bold;
+  font-size: 1em;
+  text-align: left;
+  color: #ffffff;
+}
+
+.containerx td {
+  font-weight: normal;
+  font-size: 1em;
+  -webkit-box-shadow: 0 2px 2px -2px #0e1119;
+  -moz-box-shadow: 0 2px 2px -2px #0e1119;
+  box-shadow: 0 2px 2px -2px #0e1119;
+}
+
+@media (max-width: 526px) {
+  .containerx td {
+    font-size: 9px;
+  }
+}
+
+.containerx {
+  text-align: left;
+  overflow: hidden;
+  width: 80%;
+  margin: 0 auto;
+  display: table;
+  padding: 0 0 8em 0;
+  padding-top: 7rem;
+}
+
+.containerx td,
+.containerx th {
+  padding-bottom: 2%;
+  padding-top: 2%;
+  padding-left: 2%;
+  padding-right: 20px;
+}
+
+/* Background-color of the odd rows */
+.containerx tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+/* Background-color of the even rows */
+.containerx tr:nth-child(even) {
+  background-color: #e6e7ec;
+}
+
+.containerx th {
+  background-color: #323232;
+}
+
+.containerx td:first-child {
+  color: #000000;
+}
+
+.containerx tr:hover {
+  background-color: #d0d0d0;
+  -webkit-box-shadow: 0 6px 6px -6px #0e1119;
+  -moz-box-shadow: 0 6px 6px -6px #0e1119;
+  box-shadow: 0 6px 6px -6px #0e1119;
+}
+
+.containerx td:hover {
+  //  background-color: #FFF842;
+  //  color: #403E10;
+  //  font-weight: bold;
+
+  //  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  //  transform: translate3d(6px, -6px, 0);
+
+  //  transition-delay: 0s;
+  //    transition-duration: 0.4s;
+  //    transition-property: all;
+  //  transition-timing-function: line;
+}
+
+@media (max-width: 800px) {
+  .containerx td:nth-child(1),
+  .containerx th:nth-child(1) {
+    display: none;
+  }
+}
+
+
+button{
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}

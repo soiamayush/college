@@ -42,16 +42,16 @@
   width: 100%;
 }
 
-@media(min-width: 375px){
+@media(min-width: 420px){
   .card-grid{
     grid-template-columns: repeat(2, 1fr); 
   }
 }
-@media(min-width: 540px){
+/* @media(min-width: 540px){
   .card-grid{
     grid-template-columns: repeat(3, 1fr); 
   }
-}
+} */
 
 @media(min-width: 960px){
   .card-grid{
@@ -182,11 +182,12 @@ header ul li:nth-child(4) {
 }
 }
 
-@media (max-width: 1201px) {
+@media (max-width: 960px) {
   /* CSS rules for extra large screens */
   .hero-section{
     flex-direction: column;
   padding:  25px 50px;
+  margin: auto;
 
   }
   .headingg{

@@ -1,103 +1,72 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { MDBDataTable } from "mdbreact";
 
 import Loader from "../layouts/Loader";
 import MetaData from "../layouts/MetaData";
 import { myOrders, clearErrors } from "../../actions/orderActions";
 import { useAlert } from "react-alert";
+import "./table.scss";
 
 const Myorder = () => {
-
   const alert = useAlert();
-const dispatch = useDispatch();
-const { loading, error, orders } = useSelector((state) => state.myOrders);
-console.log(orders);
+  const dispatch = useDispatch();
+  const { loading, error, orders } = useSelector((state) => state.myOrders);
+  // {console.log(orders)}
 
-const setOrders = () => {
-  const data = {
-    columns: [
-      {
-        label: "Order ID",
-        field: "id",
-        sort: "asc",
-      },
-      {
-        label: "Num of items",
-        field: "numOfItems",
-        sort: "asc",
-      },
-      {
-        label: "Amount",
-        field: "amount",
-        sort: "asc",
-      },
-      {
-        label: "Status",
-        field: "status",
-        sort: "asc",
-      },
-      {
-        label: "Actions",
-        field: "actions",
-        sort: "asc",
-      },
-    ],
-    rows: [],
-  };
-
-  orders.forEach((order) => {
-    data.rows.push({
-      id: order._id,
-      numOfItems: order.orderItems.length,
-      amount: `$${order.totalPrice}`,
-      status:
-        order.orderStatus &&
-        String(order.orderStatus).includes("Delivered") ? (
-          <p style={{ color: "green" }}>{order.orderStatus}</p>
-        ) : (
-          <p style={{ color: "red" }}>{order.orderStatus}</p>
-        ),
-      actions: (
-        <Link to={`/order/${order._id}`} className="btn btn-primary">
-          <i className="fa fa-eye"></i>
-        </Link>
-      ),
-    });
-  });
-
-
-  return data;
-};
-
-useEffect(() => {
-  dispatch(myOrders());
-
-  if (error) {
-    alert.error(error)
-    dispatch(clearErrors());
-  }
-}, [dispatch, error, alert]);
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+    dispatch(myOrders());
+  }, [dispatch, error, alert]);
 
   return (
     <>
-    <MetaData title={"My orders"}/>
+      <MetaData title={"My orders"} />
+
     
 
-    <h1 className="my-5">My orders</h1>
+      <table className="containerx">
+        <thead>
+          <tr>
+            <th>
+              <h1>Order Id</h1>
+            </th>
+            <th>
+              <h1>Amount</h1>
+            </th>
+            <th>
+              <h1>Status</h1>
+            </th>
+            <th>
+              <h1>Num of items</h1>
+            </th>
+            <th>
+              <h1>Actions</h1>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {orders &&
+            orders.map((order) => (
+              <tr>
+                <td>{order._id}</td>
+                <td>{`$${order.totalPrice}`}</td>
+                <td>{order.orderStatus}</td>
+                <td>{order.orderItems.length}</td>
+                <td>
+                  <Link to={`/order/${order._id}`} className="btn btn-primary productlink">
+                  <i className="fa-solid fa-eye"></i>
+                  </Link>
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    </>
+  );
+};
 
-    {(loading && <Loader />) || (
-      <MDBDataTable
-        data={setOrders()}
-        className="px-3"
-        bordered
-        striped
-        hover
-      />
-    )}
-  </>
-  )
-}
-
-export default Myorder
+export default Myorder;

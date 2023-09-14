@@ -33,6 +33,13 @@ import { loadStripe } from "@stripe/stripe-js";
 import Dashboard from './components/Admin/Dashboard'
 import Maintenance from './components/layouts/Maintenance'
 import axios from 'axios'
+import Productlist from './components/Admin/Productlist'
+import Orderlist from './components/Admin/Orderlist'
+import Userlist from './components/Admin/Userlist'
+import Updateproduct from './components/Admin/Updateproduct'
+import Processorder from './components/Admin/Processorder'
+import CreateProduct from './components/Admin/CreateProduct'
+import Resetpass from './components/User/Resetpass'
 
 
 function App() {
@@ -74,11 +81,18 @@ function App() {
           <Route path="/me/update" element={<ProtectedRoute ><Updateprofile/></ProtectedRoute>} exact/>
           <Route path="/me/order" element={<ProtectedRoute ><Myorder/></ProtectedRoute>} exact/>
           <Route path="/me/update/password" element={<ProtectedRoute ><Changepassword/></ProtectedRoute>} exact/>
-          <Route path="/me/forgot/password" element={<ProtectedRoute ><Forgotpassword/></ProtectedRoute>} exact/>
+          <Route path="/me/forgot/password" element={<Forgotpassword/>} exact/>
+          <Route path="/password/reset/:token" element={<Resetpass/>} exact/>
           <Route path="/me/password/reset/:id" element={<ProtectedRoute ><Newpassword/></ProtectedRoute>} exact/>
           <Route path="/me" element={<ProtectedRoute><User/></ProtectedRoute>} exact/>
-          <Route path="/dashboard" element={<Dashboard/>} exact/>
-          <Route path="/maintenance" element={<Maintenance/>} exact/>
+          <Route path="/dashboard" isAdmin={true} element={<ProtectedRoute><Dashboard/></ProtectedRoute>} exact/>
+          <Route path="/maintenance"  element={<Maintenance/>} exact/>
+          <Route path="/admin/products" isAdmin={true} element={<ProtectedRoute><Productlist/></ProtectedRoute>} exact/>
+          <Route path="/admin/products/:id" isAdmin={true} element={<ProtectedRoute><Updateproduct/></ProtectedRoute>} exact/>
+          <Route path="/admin/order/:id" isAdmin={true} element={<ProtectedRoute><Processorder/></ProtectedRoute>} exact/>
+          <Route path="/admin/orders" isAdmin={true} element={<ProtectedRoute><Orderlist/></ProtectedRoute>} exact/>
+          <Route path="/admin/users" isAdmin={true} element={<ProtectedRoute><Userlist/></ProtectedRoute>} exact/>
+          <Route path="/admin/createproduct" isAdmin={true} element={<ProtectedRoute><CreateProduct/></ProtectedRoute>} exact/>
  
         
 
@@ -95,6 +109,7 @@ function App() {
 
         </Routes>
         <Footer/>
+      
         </div>
       </Router>
     </>

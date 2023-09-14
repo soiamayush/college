@@ -284,20 +284,20 @@ export const getUserDetails = (id) => async (dispatch) => {
 
 // delete user - admin
 export const deleteUser = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: DELETE_USER_REQUEST });
+  const { data } = await axios.delete(`/api/v1/admin/user/${id}`);
+
+  dispatch({ type: DELETE_USER_SUCCESS, payload: data.success });
+  // try {
+  //   dispatch({ type: DELETE_USER_REQUEST });
 
     
 
-    const { data } = await axios.delete(`/api/v1/admin/user/${id}`);
-
-    dispatch({ type: DELETE_USER_SUCCESS, payload: data.success });
-  } catch (error) {
-    dispatch({
-      type: DELETE_USER_FAIL,
-      payload: error.response.data.message,
-    });
-  }
+  // } catch (error) {
+  //   dispatch({
+  //     type: DELETE_USER_FAIL,
+  //     payload: error.response.data.message,
+  //   });
+  // }
 };
   
 //clear errors

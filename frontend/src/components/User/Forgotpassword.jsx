@@ -22,7 +22,8 @@ const Forgotpassword = () => {
       dispatch(clearErrors());
     }
     if (message) {
-      alert.success("Password changed successfully!!");
+      console.log(message)
+      alert.success(message);
     }
   }, [dispatch, alert, error,  message]);
 
@@ -38,6 +39,7 @@ const Forgotpassword = () => {
     formData.forEach((value, key) => (object[key] = value));
 
     var json = object;
+    console.log(json)
 
     dispatch(forgotPassword(json));
   };
@@ -54,7 +56,7 @@ const Forgotpassword = () => {
 
             <div className="login-page">
               <div className="formrm">
-                <h3>Forgot Password</h3>
+                <h3 style={{marginBottom : "15px"}}>Forgot Password</h3>
                 <form className="login-form" onSubmit={submitHandler}>
                   <input
                     type="email"

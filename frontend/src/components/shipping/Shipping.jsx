@@ -24,7 +24,7 @@ const Shipping = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    dispatch(saveShippingInfo({ address, city, state, phoneNo, postalCode, country }));
+    dispatch(saveShippingInfo({ address, city, state,   phoneNo, postalCode, country }));
     navigate("/order/confirm");
   };
 
@@ -123,9 +123,9 @@ const Shipping = () => {
 
               <button className="custom-btn btn-7" type="submit">
                 <span>
-                  <Link style={{ textDecoration: "none", color: "black" }}>
+                  {/* <Link style={{ textDecoration: "none", color: "black" }}> */}
                     Submit
-                  </Link>{" "}
+                  {/* </Link>{" "} */}
                 </span>
               </button>
             </div>

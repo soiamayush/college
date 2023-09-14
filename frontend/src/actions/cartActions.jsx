@@ -3,7 +3,6 @@ import axios from "axios"
 
 export const addItemToCart = (id, quantity) => async (dispatch, getState) => {
     const { data } = await axios.get(`/api/v1/product/${id}`)
-console.log("sdiuf")
     dispatch({
         type: ADD_TO_CART,
         payload: {
@@ -11,7 +10,6 @@ console.log("sdiuf")
             name: data.product.name,
             price: data.product.price,
             image: data.product.images[0].url,
-            stock: data.product.stock,
             quantity
         }
     })
@@ -36,7 +34,9 @@ export const saveShippingInfo = (data) => async (dispatch) => {
         type: SAVE_SHIPPING_INFO,
         payload: data
     })
-
-    localStorage.setItem('shippingInfo', JSON.stringify(data))
+    const parsedData = JSON.parse(data);
+    
+     localStorage.setItem('shippingInfo', JSON.stringify(parsedData))
+    
 
 }

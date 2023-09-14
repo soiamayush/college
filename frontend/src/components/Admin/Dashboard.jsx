@@ -1,121 +1,351 @@
-import React, { Fragment, useEffect} from 'react'
+import React, { Fragment, useEffect } from "react";
 
-import MetaData from "../layouts/MetaData"
-import Loader from "../layouts/Loader"
-import SideBar from './Sidebar'
-import { Link } from 'react-router-dom'
-import { getAdminProduct } from "../../actions/productAction"
+import MetaData from "../layouts/MetaData";
+import Loader from "../layouts/Loader";
+import { Link } from "react-router-dom";
+import { getAdminProduct } from "../../actions/productAction";
 import { useDispatch, useSelector } from "react-redux";
-import { allOrders } from '../../actions/orderActions'
-import { allUsers } from '../../actions/userActions'
-
+import { allOrders } from "../../actions/orderActions";
+import { allUsers } from "../../actions/userActions";
+import "./dashboard.css";
 
 const Dashboard = () => {
-    const dispatch = useDispatch();
-    const { products } = useSelector(state => state.products)
-    const { orders , totalAmount, loading } = useSelector(state => state.allOrders)
-    const { users } = useSelector(state => state.allUsers)
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.products);
+  const { orders, totalAmount, loading } = useSelector(
+    (state) => state.allOrders
+  );
+  const { users } = useSelector((state) => state.allUsers);
 
-    useEffect(() => {
-        dispatch(getAdminProduct())
-        dispatch(allOrders())
-        dispatch(allUsers())
-    }, [dispatch, ])
+  useEffect(() => {
+    dispatch(getAdminProduct());
+    dispatch(allOrders());
+    dispatch(allUsers());
+  }, [dispatch]);
 
-    let outOfStock = 0;
-    products.forEach(product => {
-        if (product.stock === 0) {
-            outOfStock += 1;
-        }
-    })
+  let outOfStock = 0;
+  products.forEach((product) => {
+    if (product.stock === 0) {
+      outOfStock += 1;
+    }
+  });
 
   return (
     <Fragment>
-        <MetaData title={"Dashboard"}/>
-        <div className='row'>
-            <div className='col-12 col-md-2'>
-                <SideBar/>
+      <MetaData title={"Dashboard"} />
+
+      <div className="conty">
+        <div className="sidebar">
+          <div className="logo_details">
+            {/* <i className="bx bx-code-alt"></i> */}
+            <div className="logo_name">$ {totalAmount && totalAmount.toFixed(2)}</div>
+          </div>
+          <ul>
+            <li>
+              <Link to="/dashboard" className="active">
+                <i className="bx bx-grid-alt"></i>
+                <span className="links_name">Dashboard</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/admin/products">
+                <i className="bx bx-user"></i>
+                <span className="links_name">Products</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/admin/orders">
+                <i className="bx bx-user"></i>
+                <span className="links_name">Orders</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/admin/users">
+                <i className="bx bxs-truck"></i>
+                <span className="links_name">Users</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/admin/createproduct">
+                <i className="bx bxs-truck"></i>
+                <span className="links_name">Create product</span>
+              </Link>
+            </li>
+            <li className="login">
+              <a href="#">
+                <span className="links_name login_out">Login Out</span>
+                <i className="bx bx-log-out" id="log_out"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <section className="home_section">
+          <div className="card-boxes">
+            <div className="box">
+              <Link to="/admin/products" style={{ textDecoration: "none" }}>
+                <div className="right_side">
+                  <div className="numbers">{products && products.length}</div>
+                  <div className="box_topic">Total Products</div>
+                </div>
+              </Link>
+              <Link to="/admin/products" style={{ textDecoration: "none" }}>
+                <i className="bx bx-cart-alt"></i>
+              </Link>
             </div>
-
-            <div className="col-12 col-md-10">
-                    <h1 className="my-4">Dashboard</h1>
-
-                    {loading ? <Loader/> : (
-                        <Fragment>
-
-                        <div className="row pr-4">
-                        <div className="col-xl-12 col-sm-12 mb-3">
-                            <div className="card text-white bg-primary o-hidden h-100">
-                                <div className="card-body">
-                                    <div className="text-center card-font-size">Total Amount<br /> <b>${totalAmount && totalAmount.toFixed(2)}</b>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="row pr-4">
-                        <div className="col-xl-3 col-sm-6 mb-3">
-                            <div className="card text-white bg-success o-hidden h-100">
-                                <div className="card-body">
-                                    <div className="text-center card-font-size">Products<br /> <b>{products && products.length}</b></div>
-                                </div>
-                                <Link className="card-footer text-white clearfix small z-1" to="/admin/products">
-                                    <span className="float-left">View Details</span>
-                                    <span className="float-right">
-                                        <i className="fa fa-angle-right"></i>
-                                    </span>
-                                </Link>
-                            </div>
-                        </div>
-
-
-                        <div className="col-xl-3 col-sm-6 mb-3">
-                            <div className="card text-white bg-danger o-hidden h-100">
-                                <div className="card-body">
-                                    <div className="text-center card-font-size">Orders<br /> <b>{orders && orders.length}</b></div>
-                                </div>
-                                <Link className="card-footer text-white clearfix small z-1" to="/admin/orders">
-                                    <span className="float-left">View Details</span>
-                                    <span className="float-right">
-                                        <i className="fa fa-angle-right"></i>
-                                    </span>
-                                </Link>
-                            </div>
-                        </div>
-
-
-                        <div className="col-xl-3 col-sm-6 mb-3">
-                            <div className="card text-white bg-info o-hidden h-100">
-                                <div className="card-body">
-                                    <div className="text-center card-font-size">Users<br /> <b>{users && users.length}</b></div>
-                                </div>
-                                <Link className="card-footer text-white clearfix small z-1" to="/admin/users">
-                                    <span className="float-left">View Details</span>
-                                    <span className="float-right">
-                                        <i className="fa fa-angle-right"></i>
-                                    </span>
-                                </Link>
-                            </div>
-                        </div>
-
-
-                        <div className="col-xl-3 col-sm-6 mb-3">
-                            <div className="card text-white bg-warning o-hidden h-100">
-                                <div className="card-body">
-                                    <div className="text-center card-font-size">Out of Stock<br /> <b>{outOfStock}</b></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        </Fragment>
-
-)}
-</div>
-                            
+            <div className="box">
+              <Link to="/admin/orders" style={{ textDecoration: "none" }}>
+                <div className="right_side">
+                  <div className="numbers">{orders && orders.length}</div>
+                  <div className="box_topic">Total Orders</div>
+                </div>
+              </Link>
+              <Link to="/admin/orders" style={{ textDecoration: "none" }}>
+                <i className="bx bxs-cart-add"></i>
+              </Link>
             </div>
+            <div className="box">
+              <Link to="/admin/users" style={{ textDecoration: "none" }}>
+                <div className="right_side">
+                  <div className="numbers">{users && users.length}</div>
+                  <div className="box_topic">Total Users</div>
+                </div>
+              </Link>
+              <Link to="/admin/users" style={{ textDecoration: "none" }}>
+                <i className="bx bx-cart"></i>
+              </Link>
+            </div>
+            <div className="box">
+                <div className="right_side">
+                  <div className="numbers">{outOfStock}</div>
+                  <div className="box_topic">Total Out of stock items</div>
+                </div>
+                <i className="bx bxs-cart-download"></i>
+            </div>
+          </div>
+          <div className="details">
+            <div className="recent_project">
+              <div className="card_header">
+                <h2>Lastet Products</h2>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <td>Project Name</td>
+                    <td>Hours</td>
+                    <td>Priority</td>
+                    <td>Members</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Dropbox Design System</td>
+                    <td>34</td>
+                    <td>
+                      <span className="badge bg_worning">Meduim</span>
+                    </td>
+                    <td>
+                      <span className="img_group">
+                        <img src="img/avatar-2.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <img src="img/avatar-3.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <img src="img/avatar-4.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <span className="initial">+5</span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Slack Team UI Design</td>
+                    <td>47</td>
+                    <td>
+                      <span className="badge bg_danger">Higt</span>
+                    </td>
+                    <td>
+                      <span className="img_group">
+                        <img src="img/avatar-5.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <img src="img/avatar-2.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <img src="img/avatar-3.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <span className="initial">+5</span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Github Satellite</td>
+                    <td>120</td>
+                    <td>
+                      <span className="badge bg_info">Low</span>
+                    </td>
+                    <td>
+                      <span className="img_group">
+                        <img src="img/avatar-4.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <img src="img/avatar-5.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <img src="img/avatar-2.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <span className="initial">+1</span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3D character Moddelling</td>
+                    <td>89</td>
+                    <td>
+                      <span className="badge bg_worning">Meduim</span>
+                    </td>
+                    <td>
+                      <span className="img_group">
+                        <img src="img/avatar-3.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <img src="img/avatar-4.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <img src="img/avatar-5.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <span className="initial">+5</span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Web app Design System</td>
+                    <td>108</td>
+                    <td>
+                      <span className="badge bg_seccuss">Track</span>
+                    </td>
+                    <td>
+                      <span className="img_group">
+                        <img src="img/avatar-2.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <img src="img/avatar-3.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <img src="img/avatar-4.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <span className="initial">+5</span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Github Event Design</td>
+                    <td>120</td>
+                    <td>
+                      <span className="badge bg_info">Low</span>
+                    </td>
+                    <td>
+                      <span className="img_group">
+                        <img src="img/avatar-5.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <img src="img/avatar-2.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <img src="img/avatar-3.jpg" alt="" />
+                      </span>
+                      <span className="img_group">
+                        <span className="initial">+1</span>
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="recent_customers">
+              <div className="card_header">
+                <h2>New Users</h2>
+              </div>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div className="info_img">
+                        <img src="img/avatar-2.jpg" alt="" />
+                      </div>
+                    </td>
+                    <td>
+                      <h4>Willams Harris</h4>
+                      <span>Willams@gmail.com</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div className="info_img">
+                        <img src="img/avatar-3.jpg" alt="" />
+                      </div>
+                    </td>
+                    <td>
+                      <h4>Vanessa Tucker</h4>
+                      <span>Vanessa@gmail.com</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div className="info_img">
+                        <img src="img/avatar-4.jpg" alt="" />
+                      </div>
+                    </td>
+                    <td>
+                      <h4>Sharon Lessma</h4>
+                      <span>Sharon@gmail.com</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div className="info_img">
+                        <img src="img/avatar-5.jpg" alt="" />
+                      </div>
+                    </td>
+                    <td>
+                      <h4>Christina Mason</h4>
+                      <span>Christina@gmail.com</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div className="info_img">
+                        <img src="img/avatar-2.jpg" alt="" />
+                      </div>
+                    </td>
+                    <td>
+                      <h4>Willams Harris</h4>
+                      <span>Willams@gmail.com</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div className="info_img">
+                        <img src="img/avatar-3.jpg" alt="" />
+                      </div>
+                    </td>
+                    <td>
+                      <h4>Sharon Lessma</h4>
+                      <span>Willams@gmail.com</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
     </Fragment>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

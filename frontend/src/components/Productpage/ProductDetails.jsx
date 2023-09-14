@@ -44,12 +44,12 @@ const productctDetails = () => {
   );
 
   useEffect(() => {
-    dispatch(getProductDetails(params.id));
-
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
+    dispatch(getProductDetails(params.id));
+
 
     if (reviewError) {
       // alert.error(reviewError);

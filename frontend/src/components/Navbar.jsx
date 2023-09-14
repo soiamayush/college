@@ -132,7 +132,7 @@ const Navbar = () => {
                         <Link to="/me/order" onClick={toggleMenu}>Orders</Link>
                       </li>
                       <li>
-                      <Link to="/maintenance" onClick={toggleMenu}>Dashboard</Link>
+                      {user && user.role === "admin" &&<Link to="/dashboard" onClick={toggleMenu}>Dashboard</Link>}
                       </li>
                       {/* <li>
                         <a href="#">Profile</a>

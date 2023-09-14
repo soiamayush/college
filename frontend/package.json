@@ -13,6 +13,7 @@
     "@stripe/react-stripe-js": "^2.2.0",
     "@stripe/stripe-js": "^2.1.2",
     "axios": "^1.5.0",
+    "compass": "^0.1.1",
     "countries-list": "^2.6.1",
     "framer-motion": "^10.16.4",
     "mdbreact": "^5.2.0",

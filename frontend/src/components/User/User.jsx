@@ -16,7 +16,7 @@ const User = () => {
              <div className="first">
                          <h2 className="dflex headd" >My Profile</h2>
                  <div className="left">
-                     <img  src={user.avatar.url} alt={user.name} width="100"/>
+                     <img  src={user.avatar && user.avatar.url} alt={user.name} width="100"/>
                  </div>
                  <div className="right">
                      <div className="info">

@@ -14,9 +14,7 @@ const Cartpage = () => {
   const alert = useAlert();
 
 
-  const { cartItems } = useSelector((state) => state.cart);
-  
-  
+  const { cartItems } = useSelector((state) => state.cart);  
   
   const itemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const shippingPrice = itemsPrice > 200 ? 0 : 25;
@@ -44,7 +42,7 @@ const Cartpage = () => {
   };
 
   const checkoutHandler = () => {
-    navigate("/");
+    // navigate("/");
     // navigate("/login?redirect=/shipping");
   };
 
@@ -184,7 +182,7 @@ const Cartpage = () => {
                   <Link
                     className="btnc continue"
                     onClick={checkoutHandler}
-                    to="/login?redirect=/shipping"
+                    to="/shipping"
                   >
                     Checkout
                   </Link>

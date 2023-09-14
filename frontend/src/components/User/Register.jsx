@@ -159,6 +159,7 @@ const Register = () => {
                         accept="image/*"
                         onChange={onChange}
                       name="avatar"
+                      required
 
                         id="fileInput"
                         style={{ display: "none" }}
