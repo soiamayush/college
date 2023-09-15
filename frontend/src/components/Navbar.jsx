@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../actions/userActions";
 import { useAlert } from "react-alert"
 import "./layouts/dropdown.css"
-import Dropdown from ".././components/layouts/Dropdown"
 
 const Navbar = () => {
   const dispatch = useDispatch();
