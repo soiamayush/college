@@ -1,4 +1,3 @@
-
 /* Loader */
 .loader {
   display: block;
@@ -8,9 +7,11 @@
   width: 80px;
   height: 80px;
   padding-left: 0;
+
+  padding-bottom: 300px;
 }
 .loader:after {
-  content: ' ';
+  content: " ";
   display: block;
   width: 64px;
   height: 64px;

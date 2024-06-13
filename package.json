@@ -2,12 +2,12 @@
   "name": "becca",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "SET NODE_ENV=DEVELOPMENT& nodemon backend/server.js",
     "prod": "SET NODE_ENV=PRODUCTION& nodemon backend/server.js",
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "author": "ayush",
   "license": "ISC",
